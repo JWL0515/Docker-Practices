@@ -1,4 +1,4 @@
-# create centos with vim,ifconfig and jdk8
+# create centos with vim,ifconfig
 
 # Basic image
 FROM centos
@@ -12,16 +12,6 @@ WORKDIR $MYPATH
 RUN yum -y install vim
 # install ifconfig
 RUN yum -y install net-tools
-# install java8 and libs
-RUN yum -y install glibc.i686
-RUN mkdir /usr/local/java
-# add and uncompress jdk-23_linux-x64_bin.tar in image
-ADD jdk-23_linux-x64_bin.tar /usr/local/java/
-# configure enviroments
-ENV JAVA_HOME /usr/local/java/jdk-23.0.2
-ENV JRE_HOME $JAVA_HOME/jre
-ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH
-ENV PATH $JAVA_HOME/bin:$PATH
 
 EXPOSE 80
 CMD echo $MYPATH
